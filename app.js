@@ -6,7 +6,7 @@ const {Pool} = require('pg');
 require('dotenv').config();
 
 let pool = new Pool();
-const PORT = process.env.PORT;
+const PORT = 3000;
 
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({ extended: true }));
