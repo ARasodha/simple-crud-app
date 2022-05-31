@@ -1,0 +1,22 @@
+GET http://localhost:3000/mongodata
+
+###
+
+POST http://localhost:3000/mongodata
+Content-Type: application/json
+
+{
+  "name": "Arjun",
+  "age": "24"
+}
+
+### 
+DELETE http://localhost:3000/mongodata/62955a9f97de3bffb360ax126
+
+###
+PATCH http://localhost:3000/mongodata/62955add78a2bece7f2eec1d
+Content-Type: application/json
+
+{
+  "name": "Brad"
+}

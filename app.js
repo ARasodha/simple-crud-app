@@ -3,13 +3,25 @@ const app = express();
 const morgan = require("morgan");
 const bodyParser = require('body-parser');
 const {Pool} = require('pg');
+const mongoose = require('mongoose');
 require('dotenv').config();
 
-let pool = new Pool();
-const PORT = 3000;
+mongoose.connect(process.env.MONGODB_URL, { useNewUrlParser: true })
+
+const pool = new Pool();
+const db = mongoose.connection;
+db.on('error', (error) => console.error(error));
+db.once('open', () => console.log('Connected to MongoDB'));
+
+const PORT = process.env.PORT;
 
 app.use(morgan('dev'))
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json()) // not sure if needed with bodyParser
+
+const mongodataRouter = require('./routes/mongodata')
+app.use('/mongodata', mongodataRouter)
+
 
 app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html')
