@@ -78,7 +78,6 @@ app.get('/mongodata', async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message })
   }
-  
 })
 
 app.post('/mongodata', getMongoosedata, async (req, res) => {
