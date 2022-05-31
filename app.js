@@ -71,7 +71,7 @@ app.post('/info/update', (req, res) => {
     }
 })
 
-app.get('/mongodata', async (req, res) => {
+app.get('/info/mongodata', async (req, res) => {
   try {
     const data = await Mongoosedata.find();
     res.send(data);
@@ -80,7 +80,7 @@ app.get('/mongodata', async (req, res) => {
   }
 })
 
-app.post('/mongodata', getMongoosedata, async (req, res) => {
+app.post('/info/mongodata', getMongoosedata, async (req, res) => {
   const mongoosedata = new Mongoosedata({
     name: req.body.name,
     age: req.body.age
@@ -94,7 +94,7 @@ app.post('/mongodata', getMongoosedata, async (req, res) => {
   }
 })
 
-app.patch('/mongodata/:id', getMongoosedata, async (req, res) => {
+app.patch('/info/mongodata/:id', getMongoosedata, async (req, res) => {
   if (req.body.name != null) {
     res.mongoosedata.name = req.body.name
   }
@@ -111,7 +111,7 @@ app.patch('/mongodata/:id', getMongoosedata, async (req, res) => {
   }
 })
 
-app.delete('/mongodata/:id', getMongoosedata, async (req, res) => {
+app.delete('/info/mongodata/:id', getMongoosedata, async (req, res) => {
   try {
     await res.mongoosedata.remove()
     res.json({ message: 'Mongoosedata deleted' })
